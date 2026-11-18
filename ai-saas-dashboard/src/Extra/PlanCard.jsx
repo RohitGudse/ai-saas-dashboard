@@ -1,24 +1,28 @@
 
 import React from "react";
 
-function PlanCard({ plan: { name, price } }) {
-  const formattedPrice = `₹${price}/month`;
-
-  const handleSelect = () => {
-    console.log(`${name} plan selected`);
-  };
+const PlanCard = ({ plan }) => {
+  const { name, price } = plan;
 
   return (
-    <article className="plan-card">
-      <h3>{name}</h3>
+    <div className="plan-card">
+      <div className="plan-card-header">
+        <h3>{name}</h3>
+        <span className="plan-price">
+          ₹{Number(price).toLocaleString("en-IN")}
+          <small> / month</small>
+        </span>
+      </div>
 
-      <p>{formattedPrice}</p>
-
-      <button type="button" onClick={handleSelect}>
-        Select Plan
+      <button
+        className="plan-button"
+        onClick={() => alert(`You selected ${name} plan!`)}
+      >
+        Get Started
+        <span> →</span>
       </button>
-    </article>
+    </div>
   );
-}
+};
 
 export default PlanCard;
